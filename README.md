@@ -4,16 +4,16 @@ End-to-end testing framework for Java
 
 ## Download
 
-[javatea.jar](https://github.com/teafarm/javatea/dist/)
+[javatea.jar](https://github.com/teafarm/javatea/tree/master/dist/)
 
 ## Documentation
 
-[User Guide](https://github.com/teafarm/javatea/doc/JavaTeaUserGuide.pdf)
-[Javadoc](https://github.com/teafarm/javatea/doc/api/)
+[User Guide](https://github.com/teafarm/javatea/tree/master/doc/JavaTeaUserGuide.pdf)
+[Javadoc](https://github.com/teafarm/javatea/tree/master/doc/api/)
 
 ## Samples
 
-[javatea.jar](https://github.com/teafarm/javatea/doc/javateasamples.zip)
+[javatea.jar](https://github.com/teafarm/javatea/tree/master/doc/javateasamples.zip)
 
 ## License
 
