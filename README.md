@@ -8,12 +8,12 @@ End-to-end testing framework for Java
 
 ## Documentation
 
-[User Guide](https://github.com/teafarm/javatea/tree/master/doc/JavaTeaUserGuide.pdf)
-[Javadoc](https://github.com/teafarm/javatea/tree/master/doc/api/)
+* [User Guide](https://github.com/teafarm/javatea/tree/master/doc/JavaTeaUserGuide.pdf)
+* [Javadoc](https://htmlpreview.github.io/?https://github.com/teafarm/javatea/blob/master/doc/api/tea/TeaBase.html)
 
 ## Samples
 
-[javatea.jar](https://github.com/teafarm/javatea/tree/master/doc/javateasamples.zip)
+[javateasamples.zip](https://github.com/teafarm/javatea/tree/master/doc/javateasamples.zip)
 
 ## License
 
