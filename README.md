@@ -17,12 +17,12 @@ You'll need:
 We assumed that Maven and ChromeDriver are installed in the folders below:
 
     /                            # Root
-    „¥„Ÿ„Ÿ apache-maven-3.6.1       # Maven installation root
-    „    „¤„Ÿ„Ÿ ...
-    „ 
-    „¥„Ÿ„Ÿ webdrivers               # Web Drivers folder
-    „    „¤„Ÿ„Ÿ chromedriver.exe     # Executable file of ChromeDriver
-    „¤„Ÿ„Ÿ ...
+    â”œâ”€â”€ apache-maven-3.6.1       # Maven installation root
+    â”‚   â””â”€â”€ ...
+    â”‚
+    â”œâ”€â”€ webdrivers               # Web Drivers folder
+    â”‚   â””â”€â”€ chromedriver.exe     # Executable file of ChromeDriver
+    â””â”€â”€ ...
 
 
 ### Step 2: Download sample files and store in your machine.
@@ -35,11 +35,11 @@ Download the following files:
 Store the files in the following folder structure:
 
     .
-    „¥„Ÿ„Ÿ pom.xml   # POM XML file
-    „¤„Ÿ„Ÿ src
-         „¤„Ÿ„Ÿ test
-              „¤„Ÿ„Ÿ javat
-                   „¤„Ÿ„Ÿ GoogleSearchTest.javat   # JavaTea source file
+    â”œâ”€â”€ pom.xml   # POM XML file
+    â””â”€â”€ src
+         â””â”€â”€ test
+              â””â”€â”€ javat
+                   â””â”€â”€ GoogleSearchTest.javat   # JavaTea source file
 
 
 ### Step 3: Compile and Run
