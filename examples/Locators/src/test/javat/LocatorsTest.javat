@@ -1,0 +1,50 @@
+import static tea.Assert.*;
+import static tea.TeaAssert.*;
+import tea.TeaElement;
+import org.junit.jupiter.api.Test;
+
+public class LocatorsTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    // Locators
+    assertEquals(#'Name', 'Name', 'text locator');
+    assertEquals(#'partial:ame', 'Name', 'partial text locator');
+    assertEquals(#'id:name', 'Enter your name', 'id locator');
+    assertEquals(#'name:option-value'[0], 'New York', 'name locator1');
+    assertEquals(#'name:option-value'[1], 'Japan', 'name locator2');
+    assertEquals(#'linkText:Visit JavaTea site', 'Visit JavaTea site', 'link text locator');
+    assertEquals(#'partialLinkText:JavaTea site', 'Visit JavaTea site', 'partial link text locator');
+    assertEquals(#'className:label'[0], 'Name', 'className locator1');
+    assertEquals(#'className:label'[1], 'Email', 'className locator2');
+    assertEquals(#'className:label'[2], 'Place', 'className locator3');
+    assertEquals(#'tagName:h2', 'Page 1', 'tagName locator');
+    assertEquals(#'cssSelector:#name', 'Enter your name', 'cssSelector locator');
+    assertEquals(#'xpath://input[@id="name"]', 'Enter your name', 'xpath locator');
+
+    // Attributes
+    TeaElement name = #'id:name'#;
+    assertEquals(name.getTagName(), 'input', 'tag name');
+    assertEquals(name.getAttribute('type'), 'text', 'type attribute');
+    assertEquals(name.getAttribute('id'), 'name', 'name attribute');
+    assertEquals(name.getAttribute('class'), 'input-field', 'class attribute');
+    assertEquals(name.getAttribute('value'), 'Enter your name', 'value attribute');
+    assertEquals(name, 'Enter your name', 'value attribute of input');
+
+    // Body text
+    assertEquals(name.getText(), '', 'body text of input');
+    assertEquals(#'Name'#.getText(), 'Name', 'body text of Name label');
+    
+    // CssValue
+    assertEquals(name.getCssValue('font-family'), 'serif', 'CssValue font-family');
+    assertEquals(name.getCssValue('background-color'), 'rgba(255, 255, 255, 1)', 'CssValue background-color'); // white
+
+    // Location and size
+    assertEquals(name.getLocation().toString(), '(77, 60)', 'Location');
+    assertEquals(name.getSize().toString(), '(150, 22)', 'Size');
+
+    driver.quit();
+  }
+}

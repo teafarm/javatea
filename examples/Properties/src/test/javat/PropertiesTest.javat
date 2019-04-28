@@ -1,0 +1,42 @@
+import static tea.TeaAssert.*;
+import static tea.Assert.*;
+import org.junit.jupiter.api.Test;
+
+public class PropertiesTest extends tea.TeaBase {
+  @Test
+  public void test1() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    setPropertiesFile("labels");
+    #
+      '{name}'> = '{entry name}'
+                  '{entry email}'
+                  'New York'
+                  true
+    ;
+    assertEquals(#'Name'>, 'John Smith', 'Name on Page 1');
+    assertEquals(#'Email'>, 'jsmith@email', 'Email on Page 1');
+    driver.quit();
+  }
+
+  @Test
+  public void test2() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    setPropertiesFile("labels_ja_JP");
+    #
+      '{name}'> = '{entry name}'
+                  '{entry email}'
+                  'Japan'
+                  true
+    ;
+    assertEquals(#'Name'>, 'ジョン　スミス', 'Japanese name on Page 1');
+    assertEquals(#'Email'>, 'ジェイスミス＠電子手紙', 'Japanese email in Page 1');
+
+    assertEquals(#'Name'>, $('{entry name}'), 'Japanese name on Page 1');
+    assertEquals(#'Email'>, $('{entry email}'), 'Japanese email on Page 1');
+    driver.quit();
+  }
+}

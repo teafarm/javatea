@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Alert</title>
+<script>
+function setMessage(message) {
+    if (message == null) message = "[empty]";
+    document.getElementById("message").innerHTML = message;
+}
+</script>
+</head>
+<body>
+
+<input id="openAlert" type="button" value="Open Alert" onclick="alert('Hello from alert!')"><br><br>
+<input id="openConfirm" type="button" value="Open Confirm" onclick="setMessage(confirm('Hello from confirm!'))"><br><br>
+<input id="openPrompt" type="button" value="Open Prompt" onclick="setMessage(prompt('Hello from prompt!', 'This is a default message.'))"><br><br>
+
+<span id="message"></span>
+
+</body>
+</html>

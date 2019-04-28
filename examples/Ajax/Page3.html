@@ -1,0 +1,60 @@
+<html><head><meta charset="UTF-8"><title>Test Site</title>
+<script src="../commons.js"></script>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.uscitizen = f.isUsCitizen.checked;
+	params.nationality = f.isUsCitizen.checked ? "[no-data]" : f.nationality.value;
+	params.state = f.isUsCitizen.checked ? f.state.value : "";
+	params.occupation = f.occupation.value;
+	request(f.action, params);
+	return false;
+}
+
+function updateElements(element) {
+	document.getElementById("nationalitySection").style.display = (element.checked ? "none" : "");
+	document.getElementById("stateSection").style.display = (element.checked ? "" : "none");
+}
+
+window.onload = function() {
+	loadData();
+};
+</script>
+</head>
+<body>
+<h4 class="title">Page3</h4>
+<p>Show and hide elements by Ajax</p>
+
+<form method="get" action="Page4.html" onsubmit="return submitForm(this);">
+<input type="hidden" id="customer" value="">
+<input type="hidden" id="userid" value="">
+<input type="hidden" id="name" value="">
+<input type="hidden" id="registered" value="">
+<input type="hidden" id="address" value="">
+<input type="hidden" id="note" value="">
+
+<div>
+	<label for="isUsCitizen">Are you a US citizen?</label>
+	<input type="checkbox" id="isUsCitizen" onclick="var self=this;setTimeout(function(){updateElements(self);},1000);">
+</div>
+
+<div id="nationalitySection">
+	<span>Nationality</span>
+	<input type="text" id="nationality" value="">
+</div>
+
+<div id="stateSection" style="display: none">
+	<span>State</span>
+	<input type="text" id="state" value="">
+</div>
+
+<div>
+	<span>Occupation</span>
+	<input type="text" id="occupation" value="">
+</div>
+
+<button class="gw-btn-primary" id="submitBtn">Next</button>
+
+</form>
+</body>
+</html>

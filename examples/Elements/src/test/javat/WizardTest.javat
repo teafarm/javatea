@@ -1,0 +1,66 @@
+import static tea.TeaAssert.*;
+import static tea.Assert.*;
+import org.junit.jupiter.api.Test;
+
+public class WizardTest extends tea.TeaBase {
+  @Test
+  public void test1() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John Smith'
+          'jsmith@email'
+          'Japan'
+          ['Red','Blue'] // select multiple options
+          true
+          false
+          true
+          true
+    ;
+
+    waitForText('Page 2');
+    assertEquals(#'Name'@>, 'John Smith', 'Name on Page 2');
+    assertEquals(#'Email'@>, 'jsmith@email', 'Email on Page 2');
+    assertEquals(#'Place'@>, 'Japan', 'Place on Page 2');
+    assertEquals(#'Color'@>, 'Red,Blue', 'Color on Page 2');
+    assertEquals(#'Type'@>, 'Auto', 'Type on Page 2');
+    assertTrue(#'Agreement'@>, 'Agreement on Page 2');
+
+    driver.close();
+  }
+
+  @Test
+  public void test2() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+      'Name'> += ' '
+      'Name'> += 'S'
+      'Name'> += 'm'
+      'Name'> += 'i'
+      'Name'> += 't'
+      'Name'> += 'h'
+          false     // Email
+          /New.*/   // Place
+          'Red'     // Color tentative value
+          false     // Auto
+          true      // Truck
+          false     // Agreement
+      'Color'> @= 'yellow'
+      'Next' = true
+    ;
+
+    waitForText('Page 2');
+    assertEquals(#'Name'@>, 'John Smith', 'Name on Page 2');
+    assertEquals(#'Email'@>, 'Enter your email', 'Email on Page 2');
+    assertEquals(#'Place'@>, 'New York', 'Place on Page 2');
+    assertEquals(#'Color'@>, 'Yellow', 'Color on Page 2');
+    assertEquals(#'Type'@>, 'Truck', 'Type on Page 2');
+    assertFalse(#'Agreement'@>, 'Agreement on Page 2');
+
+    driver.close();
+  }
+}

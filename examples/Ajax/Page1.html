@@ -1,0 +1,43 @@
+<html><head><meta charset="UTF-8"><title>Test Site</title>
+<script src="../commons.js"></script>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.customer = f.isExistingCustomer.checked;
+	params.userid = f.isExistingCustomer.checked ? f.userid.value : "";
+	params.name = f.name.value;
+	request(f.action, params);
+	return false;
+}
+
+function updateElements(element) {
+	document.getElementById("useridSection").style.display = (element.checked ? "" : "none");
+}
+</script>
+</head>
+<body>
+<h4 class="title">Page1</h4>
+<p>Show a new element by Ajax</p>
+
+<form method="get" action="Page2.html" onsubmit="return submitForm(this);">
+
+<div id="useridSection" style="display: none">
+	<span>User ID</span>
+	<input type="text" id="userid" value="">
+</div>
+
+<div>
+	<label for="isExistingCustomer">Existing customer?</label>
+	<input type="checkbox" id="isExistingCustomer" onclick="var self=this;setTimeout(function(){updateElements(self);},1000);">
+</div>
+
+<div>
+	<span>Name</span>
+	<input type="text" id="name" value="">
+</div>
+
+<button class="gw-btn-primary" id="submitBtn">Next</button>
+
+</form>
+</body>
+</html>

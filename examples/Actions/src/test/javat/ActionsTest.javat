@@ -1,0 +1,23 @@
+import static tea.Assert.*;
+import static tea.TeaAssert.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.junit.jupiter.api.Test;
+
+public class ActionsTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('DoubleClick.html').toURI().toString());
+
+    waitForNotText("Double Clicked!");
+
+    Actions builder = new Actions(driver);
+    builder.doubleClick(#'id:clickBtn'#.element)
+           .perform();
+
+    waitForText("Double Clicked!");
+
+    driver.close();
+  }
+}

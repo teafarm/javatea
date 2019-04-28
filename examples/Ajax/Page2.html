@@ -1,0 +1,51 @@
+<html><head><meta charset="UTF-8"><title>Test Site</title>
+<script src="../commons.js"></script>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.registered = f.hasRegistered.checked;
+	params.address = f.hasRegistered.checked ? "[no-data]" : f.address.value;
+	params.note = f.note.value;
+	request(f.action, params);
+	return false;
+}
+
+function updateElements(element) {
+	document.getElementById("regSection").style.display = (element.checked ? "none" : "");
+	document.getElementById("addressSection").style.display = (element.checked ? "none" : "");
+}
+
+window.onload = function() {
+	loadData();
+};
+</script>
+</head>
+<body>
+<h4 class="title">Page2</h4>
+<p>Hide an element by Ajax</p>
+
+<form method="get" action="Page3.html" onsubmit="return submitForm(this);">
+<input type="hidden" id="customer" value="">
+<input type="hidden" id="userid" value="">
+<input type="hidden" id="name" value="">
+
+<div id="regSection">
+	<label for="hasRegistered">Have you registered address before?</label>
+	<input type="checkbox" id="hasRegistered" onclick="var self=this;setTimeout(function(){updateElements(self);},1000);">
+</div>
+
+<div id="addressSection">
+	<span>Address</span>
+	<input type="text" id="address" value="">
+</div>
+
+<div>
+	<span>Note</span>
+	<input type="text" id="note" value="">
+</div>
+
+<button class="gw-btn-primary" id="submitBtn">Next</button>
+
+</form>
+</body>
+</html>

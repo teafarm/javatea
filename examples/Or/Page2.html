@@ -1,0 +1,63 @@
+<html><head><meta charset="UTF-8"><title>Test Site</title>
+<script src="../commons.js"></script>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.shipto = f.shipto.value;
+	params.billto = f.billto.value;
+	params.note = f.note.value;
+	request(f.action, params);
+	return false;
+}
+
+function updateElements() {
+	document.getElementById("shipToSection").style.display = "none";
+	document.getElementById("billToSection").style.display = "none";
+	document.getElementById("noteSection").style.display = "none";
+
+	var type = document.getElementById('type').innerHTML;
+	if (type === 'shipto') {
+		document.getElementById("shipToSection").style.display = "";
+	} else if (type === 'billto') {
+		document.getElementById("billToSection").style.display = "";
+	} else {
+		document.getElementById("noteSection").style.display = "";
+	}
+}
+
+window.onload = function() {
+	loadData();
+	updateElements();
+};
+</script>
+</head>
+<body>
+<h4 class="title">Page2</h4>
+
+<form method="get" action="Page3.html" onsubmit="return submitForm(this);">
+
+</div><div>
+	<span>Type</span>:
+	<span class="ng-binding" id="type"></span>
+</div>
+
+<div id="shipToSection">
+	<span>Ship To</span>
+	<input type="text" id="shipto" value="">
+</div>
+
+<div id="billToSection">
+	<span>Bill To</span>
+	<input type="text" id="billto" value="">
+</div>
+
+<div id="noteSection">
+	<span>Note</span>
+	<input type="text" id="note" value="">
+</div>
+
+<button class="gw-btn-primary" id="submitBtn">Next</button>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+import static tea.TeaAssert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+public class PairwiseTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = {* 'John', '' *}
+                {* 'john@email', '' *}
+                {* 'New York', 'Japan' *}
+                true
+    ;
+
+    assertEquals(#'NAME'@>, toActualValue({***0***}), 'Name entered');
+    assertEquals(#'EMAIL'@>, toActualValue({***1***}), 'Email entered');
+    assertEquals(#'PLACE'@>, {***2***}, 'Place selected');
+
+    driver.quit();
+  }
+
+  private String toActualValue(String value) {
+    return value.length() > 0 ? value : "No Value";
+  }
+}

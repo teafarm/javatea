@@ -1,0 +1,41 @@
+<html>
+<head><meta charset="UTF-8"><title>Test Site</title>
+<style>
+  span  {width:60px; display:inline-block; text-align:right;}
+  input {width: 150px; margin:5px;}
+  select {width: 150px; margin:5px;padding:2px;}
+  button {margin-left:70px; padding:5px;}
+</style>
+<script src="../commons.js"></script>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.name = f.name.value;
+	params.email = f.email.value;
+	params.place = f.place.options[f.place.selectedIndex].text;
+	request(f.action, params);
+}
+</script>
+</head>
+<body>
+
+<h2 class="title">Page 1</h2>
+
+<form method="get" action="Page2.html" onsubmit="var self=this;this.nextBtn.disabled=true;setTimeout(function(){submitForm(self);},1000);return false;">
+  <span>Name</span>
+  <input type="text" id="name" value="">
+  <br>
+  <span>Email</span>
+  <input type="text" id="email" value="">
+  <br>
+  <span>Place</span>
+  <select id="place">
+    <option value="ny">New York</option>
+    <option value="japan">Japan</option>
+  </select>
+  <br><br>
+  <button id="nextBtn">Next</button>
+</form>
+
+</body>
+<html>

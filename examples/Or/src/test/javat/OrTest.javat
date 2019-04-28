@@ -1,0 +1,77 @@
+import static tea.Assert.*;
+import static tea.TeaAssert.*;
+import org.junit.jupiter.api.Test;
+
+public class OrTest extends tea.TeaBase {
+  private void next() {#
+    'Next' = true
+  ;}
+
+  @Test
+  public void test1() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    #
+      'Type'> = 'billto' true
+
+      'Ship To'> | 'Bill To'> | 'Note'> = [
+          'Ship To Address', /* ShipTo */
+          'Bill To Address', // BillTo
+          'Note Message' // Note
+      ]
+    ;
+    assertEquals(#'Type'@>, 'billto', 'Type on Page 2');
+    next();
+
+    assertEquals(#'Type'@>, 'billto', 'Type on Page 3');
+    assertEquals(#'Bill To'@>, 'Bill To Address', 'Bill To on Page 3');
+    driver.quit();
+  }
+
+  @Test
+  public void test2() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    #
+      'Type'> = 'note' true
+
+      'Ship To'> | 'Bill To'> | 'Note'> = 'Default message' // to be applied on the element found
+    ;
+    assertEquals(#'Type'@>, 'note', 'Type on Page 2');
+    next();
+
+    // Page 3
+    assertEquals(#'Type'@>, 'note', 'Type on Page 3');
+    assertEquals(#'Note'@>, 'Default message', 'Note on Page 3');
+    driver.quit();
+  }
+
+  @Test
+  public void test3() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    #
+      'Type'> = 'shipto' true
+
+      'Bill To'> | 'Ship To'> | 'Note'> = [
+        fail('This message should not be dislayed.');
+      ,
+        #
+          assertEquals(#'Type'@>, 'shipto', 'Type on Page 2')
+          assertEquals(#'className:title', 'Page2', 'Title on Page 2')
+        ;
+        return 'Ship To Value'; // Return a value to be set in the selected element.
+      ,
+        fail('This message should not be dislayed.');
+      ]
+      next()
+    ;
+
+    assertEquals(#'Type'@>, 'shipto', 'Type on Page 3');
+    assertEquals(#'Ship To'@>, 'Ship To Value', 'Ship To on Page 3');
+    driver.quit();
+  }
+}

@@ -1,0 +1,13 @@
+<html>
+<head><title>Double Click</title>
+<script>
+function print(message) {
+  var body = document.getElementsByTagName("body")[0] || document.body;
+  var msgTag = document.createElement("div");
+  msgTag.appendChild(document.createTextNode(message));
+  body.appendChild(msgTag);
+}
+</script>
+</head><body>
+    <button id="clickBtn" ondblclick="print('Double Clicked!')">Double click ME</button>
+</body></html>

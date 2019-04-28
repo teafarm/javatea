@@ -1,0 +1,33 @@
+import static tea.TeaAssert.*;
+import static tea.Assert.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.junit.jupiter.api.Test;
+
+public class EventListenerTest extends tea.TeaBase {
+  @Override
+  protected void createDriver(String browser) {
+    ChromeDriver webDriver = new ChromeDriver();
+    driver = new EventFiringWebDriver(webDriver);
+    ((EventFiringWebDriver) driver).register(new CustomEventListener());
+  }
+
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+                'john@email'
+                'Japan'
+                true
+    ;
+
+    assertEquals(#'NAME'@>, 'John', 'Name entered');
+    assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
+    assertEquals(#'PLACE'@>, 'Japan', 'Place selected');
+
+    driver.quit();
+  }
+}

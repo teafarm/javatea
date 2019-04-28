@@ -1,0 +1,25 @@
+import static tea.TeaAssert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+public class OptionalTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+      optional 'Email'> = 'john@email'
+      optional 'City'> = 'Test City'
+      optional 'Place'> = 'Japan'
+      optional 'Zip'> = '12345-6789'
+      'Next' = true
+    ;
+
+    assertEquals(#'NAME'@>, 'John', 'Name entered');
+    assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
+    assertEquals(#'PLACE'@>, 'Japan', 'Place selected');
+
+    driver.quit();
+  }
+}

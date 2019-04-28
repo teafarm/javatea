@@ -1,0 +1,30 @@
+import static tea.TeaAssert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+public class ScreenshotTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    try {
+      createDriver('chrome');
+      scenario();
+    } catch (Throwable t) {
+      takeScreenshot("error.png");
+      throw t;
+    } finally {
+      driver.close();
+    }
+  }
+
+  private void scenario() {
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+                'john@email'
+                'Japan'
+                true
+    ;
+
+    assertEquals(#'NAME'@>, 'Invalid Name', 'Incorrect Name to throw an exception');
+  }
+}

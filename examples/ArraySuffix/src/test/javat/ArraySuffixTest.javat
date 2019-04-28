@@ -1,0 +1,34 @@
+import static tea.Assert.assertEquals;
+import static tea.TeaAssert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+public class ArraySuffixTest extends tea.TeaBase {
+  private static final String NAME = "Name";
+
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    assertEquals(#'Name'>, 'Value 01', 'Name>');
+    assertEquals(#'Name'[0]>, 'Value 01', 'Name[0]>');
+    assertEquals(#'Name'[1]>, 'Value 11', 'Name[1]>');
+    assertEquals(#'Name'[2]>, 'Value 21', 'Name[2]>');
+
+    assertEquals(#NAME>, 'Value 01', 'NAME>'); // Variable
+    assertEquals(#'Na'+'me'>, 'Value 01', "'Na'+'me'>"); // Concatenated strings
+    assertEquals(#''+NAME+''>, 'Value 01', 'NAME>'); // Variable + strings
+    assertEquals(#'Name'[1+0]>, 'Value 11', 'Name[1+0]>'); // Addition
+    assertEquals(#'Name'[4*2/2-2]>, 'Value 21', 'Name[4*2/2-2]>'); // Arithmetic operations
+
+    // Test all cells
+    for (int y=0; y<3; y++) {
+      for (int x=1; x<=3; x++) {
+        assertEquals(#'Name'[y]x>, 'Value '+y+x, 'Name['+y+']'+x+'>');
+        assertEquals(#'Name'[y]x>#.getAttribute('id'), ''+y+x, 'id='+y+x);
+      }
+    }
+
+    driver.quit();
+  }
+}

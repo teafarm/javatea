@@ -1,0 +1,16 @@
+// Load template code into this working memory.
+load 'WizardTest.javat'
+
+// Replace class names.
+around 'WizardTest' {Alternative1Test}
+
+// Insert a new statement
+before 'true' {
+  'Name'> += ' Smith'
+  'Next' =
+}
+
+// Insert a new assertion
+around "'John'"[1] {
+  'John Smith'
+}

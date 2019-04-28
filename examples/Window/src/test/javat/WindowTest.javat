@@ -1,0 +1,39 @@
+import static tea.Assert.*;
+import static tea.TeaAssert.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.junit.jupiter.api.Test;
+
+public class WindowTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('Window.html').toURI().toString());
+
+    String win1 = driver.getWindowHandle();
+    print("window handle #1 is " + win1);
+    assertEquals(#'id:message', 'Parent window', 'message1');
+    assertEquals(driver.getWindowHandles().size(), 1, 'Number of window1');
+
+    #'linkText:Open window' = true;
+    // Switch to the new windows (#2)
+    for (String windowHandle  : driver.getWindowHandles()) {
+      if (!windowHandle.equals(win1)) {
+        driver.switchTo().window(windowHandle);
+        break;
+      }
+    }
+
+    String win2 = driver.getWindowHandle();
+    print("window handle #2 is " + win2);
+    assertNotEquals(win1, win2, 'Window Handles');
+    assertEquals(#'id:newmessage', 'New window', 'message2');
+    assertEquals(driver.getWindowHandles().size(), 2, 'Number of window2');
+    driver.close();
+
+    driver.switchTo().window(win1);
+    assertEquals(#'id:message', 'Parent window', 'message3');
+
+    driver.quit();
+  }
+}

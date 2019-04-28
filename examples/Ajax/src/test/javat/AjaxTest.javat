@@ -1,0 +1,53 @@
+import static tea.Assert.*;
+import static tea.TeaAssert.*;
+import org.junit.jupiter.api.Test;
+
+public class AjaxTest extends tea.TeaBase {
+  private void next() {
+    print('next');
+    #'xpath://button'[0] = true;
+  }
+
+  @Test
+  public void test() {
+    char a = 'a'; // This is a test for using a character
+    createDriver('chrome');
+    driver.get(new java.io.File('Page1.html').toURI().toString());
+
+    #
+      // Page 1 (Show)
+      'Existing customer?'> = true
+      'User ID'> = 'jsmith'
+      'Name'> = 'John Smith'
+      next()
+
+      // Page 2 (Hide)
+      'Have you registered address before?'> = true
+      waitForNotText('Address')
+      'Note'> = 'Test note'
+      next()
+
+      // Page 3 (Show and hide), both
+      'Are you a US citizen?'> = true
+      'State'> = 'New York'
+      'Occupation'> = 'Engineer'
+      next()
+    ;
+
+    // Page 4
+    assertTrue(#'Customer'@>#, 'Customer');
+    assertEquals(#'User ID'@>, 'jsmith', 'User ID');
+    assertEquals(#'Name'@>, 'John Smith', 'Name');
+
+    assertTrue(#'Registered'@>, 'Registered');
+    assertEquals(#'Address'@>, '[no-data]', 'Address');
+    assertEquals(#'Note'@>, 'Test note', 'Note');
+
+    assertTrue(#'US Citizen'@>, 'US Citizen');
+    assertEquals(#'Nationality'@>, '[no-data]', 'Nationality');
+    assertEquals(#'State'@>, 'New York', 'State');
+    assertEquals(#'Occupation'@>, 'Engineer', 'Occupation');
+
+    driver.close();
+  }
+}

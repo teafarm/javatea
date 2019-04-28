@@ -1,150 +1,56 @@
 # JavaTea
 
-End-to-end testing framework for Java
+End-to-end functional automation testing framework for Java
+
 
 ## Getting Started
 
-STEP 1: Create a test file named `FirstTest.javat`.
-Make directories `src/test/javatea` and store the `FirstTest.javat` in it.
+### Step 1: Prerequisites
+
+You'll need:
+
+* [Java 1.8 or later](https://www.oracle.com/technetwork/java/javase/)
+* [Maven 3.1.6 or later](https://maven.apache.org/)
+* [Chrome browser](https://www.google.com/chrome/) 
+* [ChromeDriver](http://chromedriver.chromium.org/) - WebDriver for Chrome
+
+We assumed that Maven and ChromeDriver are installed in the folders below:
+
+    /                            # Root
+    „¥„Ÿ„Ÿ apache-maven-3.6.1       # Maven installation root
+    „    „¤„Ÿ„Ÿ ...
+    „ 
+    „¥„Ÿ„Ÿ webdrivers               # Web Drivers folder
+    „    „¤„Ÿ„Ÿ chromedriver.exe     # Executable file of ChromeDriver
+    „¤„Ÿ„Ÿ ...
+
+
+### Step 2: Download sample files and store in your machine.
+
+Download the following files:
+
+* pom.xml(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/pom.xml)
+* GoogleSearchTest.javat(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/src/test/GoogleSearchTest.javat)
+
+Store the files in the following folder structure:
+
+    .
+    „¥„Ÿ„Ÿ pom.xml   # POM XML file
+    „¤„Ÿ„Ÿ src
+         „¤„Ÿ„Ÿ test
+              „¤„Ÿ„Ÿ javat
+                   „¤„Ÿ„Ÿ GoogleSearchTest.javat   # JavaTea source file
+
+
+### Step 3: Compile and Run
 
 ```
-import org.junit.jupiter.api.Test;
-public class FirstTest extends tea.TeaBase {
-  @Test
-  public void test() {
-    createDriver('chrome');
-    driver.get('http://www.google.com');
-    #
-      'name:q' = 'JavaTea'
-      'name:btnK' = true
-    ;
-  }
-}
+C:> SET PATH=/apache-maven-3.6.1/bin;/webdrivers;C:/Windows/System32
+C:> mvn exec:java
+C:> mvn test
 ```
 
-STEP 2: Copy the following `pom.xml` into your machine.
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>javatea-sample</groupId>
-  <artifactId>javatea-sample</artifactId>
-  <version>1.0.0</version>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  </properties>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <executions>
-          <execution>
-            <id>javatea-execution</id>
-            <goals><goal>java</goal></goals>
-          </execution>
-        </executions>
-        <configuration>
-          <includePluginDependencies>true</includePluginDependencies>
-          <mainClass>tea.JavaTea</mainClass>
-          <arguments>
-            <argument>-i</argument>
-            <argument>src/test/javat</argument>
-            <argument>-o</argument>
-            <argument>src/test/java</argument>
-            <argument>FirstTest.javat</argument>
-          </arguments>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.0</version>
-        <configuration>
-          <reportFormat>plain</reportFormat>
-          <includes>
-            <include>**/*Test*.java</include>
-          </includes>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>3.141.59</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.4.2</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.4.2</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>exec-maven-plugin</artifactId>
-      <version>1.6.0</version>
-      <type>maven-plugin</type>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.teafarm.javatea</groupId>
-      <artifactId>javatea</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-
-  </dependencies>
-</project>
-```
-
-STEP 3: Download an execution file of Selenium WebDriver for Chrome.
-Note that you have to choose right version according to your Brome browser installed on your machine.
-
-* [Chrome WebDriver](http://chromedriver.chromium.org/)
-
-
-STEP 4: Add two directories below into PATH and run the pom.
-
-* Maven bin directory
-* The directory where you stored the chromedriver.exe downloaded in previous step.
-
-```
-SET PATH=/apache-maven-3.6.1/bin;/webdrivers
-mvn exec:java
-mvn test
-```
-
-A chrome browser will be opened and search a keyword 'JavaTea' on Google.
+A chrome browser will be opened and show a Google site. And a keyword search will be executed automatically.
 
 
 ## Documentation
@@ -154,7 +60,7 @@ A chrome browser will be opened and search a keyword 'JavaTea' on Google.
 
 ## History
  
-Version 0.0.1 (2019-04-24)
+Version 0.0.1 (2019-05-01)
  
 ## Credits
  

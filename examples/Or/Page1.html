@@ -1,0 +1,30 @@
+<html><head><meta charset="UTF-8"><title>Test Site</title>
+<script src="../commons.js"></script>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.type = f.type.value;
+	request(f.action, params);
+	return false;
+}
+
+function updateElements(element) {
+	document.getElementById("useridSection").style.display = (element.checked ? "" : "none");
+}
+</script>
+</head>
+<body>
+<h4 class="title">Page1</h4>
+
+<form method="get" action="Page2.html" onsubmit="return submitForm(this);">
+
+<div>
+	<span>Type</span>
+	<input type="text" id="type" value="">
+</div>
+
+<button id="submitBtn">Next</button>
+
+</form>
+</body>
+</html>
