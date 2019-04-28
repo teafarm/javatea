@@ -30,7 +30,7 @@ We assumed that Maven and ChromeDriver are installed in the folders below:
 Download the following files:
 
 * pom.xml(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/pom.xml)
-* GoogleSearchTest.javat(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/src/test/GoogleSearchTest.javat)
+* GoogleSearchTest.javat(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/src/test/javat/GoogleSearchTest.javat)
 
 Store the files in the following folder structure:
 
