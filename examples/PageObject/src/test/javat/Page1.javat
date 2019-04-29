@@ -1,0 +1,17 @@
+import tea.TeaBase;
+
+public class Page1 extends TeaBase {
+  public Page1(TeaBase base) {
+    super(base);
+  }
+
+  public Page1 setUserInfo(String name, String email, String place) {
+    #'Name'> = name email place;
+    return this;
+  }
+
+  public Page1 next() {
+    #'Next' = true;
+    return this;
+  }
+}

@@ -1,0 +1,19 @@
+import org.junit.jupiter.api.Test;
+
+public class PageObjectTest extends tea.TeaBase {
+  private Page1 page1 = new Page1(this);
+  private Page2 page2 = new Page2(this);
+
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    page1.setUserInfo('John', 'john@email', 'Tokyo')
+         .next();
+
+    page2.validateUserInfo('John', 'john@email', 'Tokyo');
+
+    driver.quit();
+  }
+}

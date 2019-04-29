@@ -1,0 +1,15 @@
+import static tea.TeaAssert.assertEquals;
+import tea.TeaBase;
+
+public class Page2 extends TeaBase {
+  public Page2(TeaBase base) {
+    super(base);
+  }
+
+  public Page2 validateUserInfo(String expectedName, String expectedEmail, String expectedPlace) {
+    assertEquals(#'NAME'@>, expectedName, 'Name entered');
+    assertEquals(#'EMAIL'@>, expectedEmail, 'Email entered');
+    assertEquals(#'PLACE'@>, expectedPlace, 'Place selected');
+    return this;
+  }
+}
