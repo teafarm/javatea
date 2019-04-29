@@ -14,7 +14,7 @@ public class LocatorsTest extends tea.TeaBase {
     assertEquals(#'partial:ame', 'Name', 'partial text locator');
     assertEquals(#'id:name', 'Enter your name', 'id locator');
     assertEquals(#'name:option-value'[0], 'New York', 'name locator1');
-    assertEquals(#'name:option-value'[1], 'Japan', 'name locator2');
+    assertEquals(#'name:option-value'[1], 'Tokyo', 'name locator2');
     assertEquals(#'linkText:Visit JavaTea site', 'Visit JavaTea site', 'link text locator');
     assertEquals(#'partialLinkText:JavaTea site', 'Visit JavaTea site', 'partial link text locator');
     assertEquals(#'className:label'[0], 'Name', 'className locator1');

@@ -10,13 +10,13 @@ public class WizardTest extends tea.TeaBase {
     #
       'Name'> = 'John'
                 'john@email'
-                'Japan'
+                'Tokyo'
                 true
     ;
 
     assertEquals(#'NAME'@>, 'John', 'Name entered');
     assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
-    assertEquals(#'PLACE'@>, 'Japan', 'Place selected');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
 
     driver.quit();
   }

@@ -21,7 +21,7 @@ public class ScreenshotTest extends tea.TeaBase {
     #
       'Name'> = 'John'
                 'john@email'
-                'Japan'
+                'Tokyo'
                 true
     ;
 

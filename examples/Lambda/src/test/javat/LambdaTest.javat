@@ -31,13 +31,13 @@ public class LambdaTest extends tea.TeaBase {
       }
 
       assertEquals(#.#.getAttribute('id'), 'place')
-      'Japan' // Select a place
+      'Tokyo' // Select a place
       true    // click Next button
     ;
 
     assertEquals(#'NAME'@>, 'John Smith', 'Name entered');
     assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
-    assertEquals(#'PLACE'@>, 'Japan', 'Place selected');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
 
     driver.quit();
   }

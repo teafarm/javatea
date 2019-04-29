@@ -10,7 +10,7 @@ public class PairwiseTest extends tea.TeaBase {
     #
       'Name'> = {* 'John', '' *}
                 {* 'john@email', '' *}
-                {* 'New York', 'Japan' *}
+                {* 'New York', 'Tokyo' *}
                 true
     ;
 

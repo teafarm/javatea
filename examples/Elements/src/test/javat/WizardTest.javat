@@ -11,7 +11,7 @@ public class WizardTest extends tea.TeaBase {
     #
       'Name'> = 'John Smith'
           'jsmith@email'
-          'Japan'
+          'Tokyo'
           ['Red','Blue'] // select multiple options
           true
           false
@@ -22,7 +22,7 @@ public class WizardTest extends tea.TeaBase {
     waitForText('Page 2');
     assertEquals(#'Name'@>, 'John Smith', 'Name on Page 2');
     assertEquals(#'Email'@>, 'jsmith@email', 'Email on Page 2');
-    assertEquals(#'Place'@>, 'Japan', 'Place on Page 2');
+    assertEquals(#'Place'@>, 'Tokyo', 'Place on Page 2');
     assertEquals(#'Color'@>, 'Red,Blue', 'Color on Page 2');
     assertEquals(#'Type'@>, 'Auto', 'Type on Page 2');
     assertTrue(#'Agreement'@>, 'Agreement on Page 2');

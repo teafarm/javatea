@@ -11,14 +11,14 @@ public class OptionalTest extends tea.TeaBase {
       'Name'> = 'John'
       optional 'Email'> = 'john@email'
       optional 'City'> = 'Test City'
-      optional 'Place'> = 'Japan'
+      optional 'Place'> = 'Tokyo'
       optional 'Zip'> = '12345-6789'
       'Next' = true
     ;
 
     assertEquals(#'NAME'@>, 'John', 'Name entered');
     assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
-    assertEquals(#'PLACE'@>, 'Japan', 'Place selected');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
 
     driver.quit();
   }
