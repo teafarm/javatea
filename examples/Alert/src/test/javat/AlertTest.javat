@@ -47,6 +47,6 @@ public class AlertTest extends tea.TeaBase {
     alert.dismiss();
     assertEquals(#'id:message', '[empty]', 'Prompt cancelled message');
 
-    driver.close();
+    driver.quit();
   }
 }

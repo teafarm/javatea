@@ -1,4 +1,4 @@
-import tea.util.TeaUtil;
+import tea.util.SeleniumUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
@@ -7,11 +7,11 @@ public class CustomEventListener extends AbstractWebDriverEventListener {
 
 	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
-		TeaUtil.takeScreenshot(driver, "screenshot"+(++index)+".png");
+		SeleniumUtil.takeScreenshot(driver, "screenshot"+(++index)+".png");
 	}
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		TeaUtil.takeScreenshot(driver, "screenshot"+(++index)+".png");
+		SeleniumUtil.takeScreenshot(driver, "screenshot"+(++index)+".png");
 	}
 }

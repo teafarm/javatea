@@ -1,0 +1,94 @@
+import static tea.TeaAssert.assertEquals;
+import tea.TeaElement;
+import java.util.*;
+import java.util.function.*;
+import org.openqa.selenium.*;
+import org.junit.jupiter.api.Test;
+
+public class DemoTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #'Name'>#.balloonAndWait('Enter your name.');
+    #'Name'> = 'John';
+
+    TeaElement emailInput = blurElement(#'Email'>);
+    emailInput.balloonAndWait('Enter your email.', 'balloon:right;');
+    #'Email'> = 'john@email';
+
+    final TeaElement placeSelect = #'Place'>#;
+    TeaElement placeBalloon = placeSelect.balloon("Select 'Tokyo'",
+                  'left:100px; background-color:red; color:white;border-color:pink;');
+    waitUntil(
+        () -> placeSelect.getFirstSelectedOption().getText().equals('Tokyo'),
+        -1);
+    hideElement(placeBalloon);
+
+    #'Next'#.balloonAndWait('Click <b>"Next"</b> to confirm values entered.',
+        'font-size:14pt;',
+        () -> {#'Next' = true;});
+
+    waitForText('Page 2');
+
+    blurElement(#'EMAIL'@>);
+//    markElement(#'Page 2');
+    emphasizeElement(#'NAME'@>);
+    emphasizeElement(#'PLACE'@>);
+
+    Map<String, Consumer<TeaElement>> events = new HashMap<>();
+    events.put("onload", balloonElement -> moveElement(balloonElement, 200));
+    #'PLACE'@>#.balloonAndWait('Values entered on Page 1.', 'top:-200px;', events);
+
+    driver.quit();
+  }
+
+  private TeaElement blurElement(TeaElement teaElement) {
+    teaElement.setAttribute('style', 'color', 'transparent');
+    teaElement.setAttribute('style', 'text-shadow', '0 0 5px rgba(0,0,0,0.4)');
+    return teaElement;
+  }
+
+  private TeaElement hideElement(TeaElement teaElement) {
+    teaElement.setAttribute('style', 'display', 'none');
+    return teaElement;
+  }
+
+  private TeaElement emphasizeElement(TeaElement teaElement) {
+    teaElement.setAttribute('style', 'color', 'red');
+    for (int i=14; i<22; i++) {
+      if (i > 14) sleep(40);
+      teaElement.setAttribute('style', 'font-size', i+'pt');
+    }
+    return teaElement;
+  }
+
+  private TeaElement moveElement(TeaElement teaElement, int yDistance) {
+    Point p = teaElement.getLocation();
+    for (int dy = 10; dy < yDistance; dy+=10) {
+      if (dy > 10) sleep(30);
+      teaElement.setAttribute('style', 'top', (p.y + dy)+'px');
+    }
+    teaElement.setAttribute('style', 'top', (p.y + yDistance)+'px');
+    return teaElement;
+  }
+
+  private TeaElement resetElementStyle(TeaElement teaElement) {
+    teaElement.setAttribute('style', '');
+    return teaElement;
+  }
+
+  private TeaElement markElement(TeaElement teaElement) {
+    teaElement.setAttribute('style', 'background-image', 'linear-gradient(to top, yellow 100%, transparent 40%)');
+    teaElement.setAttribute('style', 'background-repeat', 'no-repeat');
+    teaElement.setAttribute('style', 'background-size', '0% 100%');
+    teaElement.setAttribute('style', 'background-position', '0 bottom');
+    for (int i=0; i<=100; i+=2) {
+      if (i > 0) sleep(30);
+      teaElement.setAttribute('style', 'background-size', i+'% 100%');
+    }
+    return teaElement;
+  }
+
+}
