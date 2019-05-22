@@ -1,7 +1,5 @@
 import static tea.TeaAssert.assertEquals;
 import tea.TeaElement;
-import java.util.*;
-import java.util.function.*;
 import org.openqa.selenium.*;
 import org.junit.jupiter.api.Test;
 
@@ -11,35 +9,32 @@ public class DemoTest extends tea.TeaBase {
     createDriver('chrome');
     driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
 
-    #'Name'>#.balloonAndWait('Enter your name.');
     #'Name'> = 'John';
+    #'Name'>#.balloonAndWait('Enter your name.');
 
     TeaElement emailInput = blurElement(#'Email'>);
-    emailInput.balloonAndWait('Enter your email.', 'balloon:right;');
     #'Email'> = 'john@email';
+    emailInput.balloonAndWait('Blur to hide email.', 'balloon:right;');
 
     final TeaElement placeSelect = #'Place'>#;
     TeaElement placeBalloon = placeSelect.balloon("Select 'Tokyo'",
-                  'left:100px; background-color:red; color:white;border-color:pink;');
+                  'left:100px; background-color:red; color:white; border:10px solid pink;');
     waitUntil(
         () -> placeSelect.getFirstSelectedOption().getText().equals('Tokyo'),
         -1);
     hideElement(placeBalloon);
 
-    #'Next'#.balloonAndWait('Click <b>"Next"</b> to confirm values entered.',
+    #'Next'.balloonAndWait('Click <b>"Next"</b> to confirm values entered.',
         'font-size:14pt;',
-        () -> {#'Next' = true;});
-
-    waitForText('Page 2');
+        {onhide:() -> {#'Next' = true;}});
 
     blurElement(#'EMAIL'@>);
-//    markElement(#'Page 2');
     emphasizeElement(#'NAME'@>);
     emphasizeElement(#'PLACE'@>);
 
-    Map<String, Consumer<TeaElement>> events = new HashMap<>();
-    events.put("onload", balloonElement -> moveElement(balloonElement, 200));
-    #'PLACE'@>#.balloonAndWait('Values entered on Page 1.', 'top:-200px;', events);
+    #'PLACE'@>#.balloonAndWait('Values entered on Page 1.',
+        'top:-200px;',
+        { onload: balloonElement -> moveElement(balloonElement, 200) });
 
     driver.quit();
   }
@@ -71,23 +66,6 @@ public class DemoTest extends tea.TeaBase {
       teaElement.setAttribute('style', 'top', (p.y + dy)+'px');
     }
     teaElement.setAttribute('style', 'top', (p.y + yDistance)+'px');
-    return teaElement;
-  }
-
-  private TeaElement resetElementStyle(TeaElement teaElement) {
-    teaElement.setAttribute('style', '');
-    return teaElement;
-  }
-
-  private TeaElement markElement(TeaElement teaElement) {
-    teaElement.setAttribute('style', 'background-image', 'linear-gradient(to top, yellow 100%, transparent 40%)');
-    teaElement.setAttribute('style', 'background-repeat', 'no-repeat');
-    teaElement.setAttribute('style', 'background-size', '0% 100%');
-    teaElement.setAttribute('style', 'background-position', '0 bottom');
-    for (int i=0; i<=100; i+=2) {
-      if (i > 0) sleep(30);
-      teaElement.setAttribute('style', 'background-size', i+'% 100%');
-    }
     return teaElement;
   }
 

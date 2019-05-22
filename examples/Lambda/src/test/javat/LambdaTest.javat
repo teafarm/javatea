@@ -21,16 +21,16 @@ public class LambdaTest extends tea.TeaBase {
 
       // Call a lambda function with no parameters
       () => {
-        assertEquals(#.#.getAttribute('id'), 'place'); // current element is place in original contenxt
+        assertEquals(#*#.getAttribute('id'), 'place'); // current element is place in original contenxt
         pushContext(); // save the current context and create a new one
         #'Name'> += ' Smith'; // Access Name input element and count up element index
-        assertEquals(#.#.getAttribute('id'), 'email'); // current element is email in the new contenxt
+        assertEquals(#*#.getAttribute('id'), 'email'); // current element is email in the new contenxt
         popContext(); // change back to original context
-        assertEquals(#.#.getAttribute('id'), 'place'); // current element is changed back to place.
+        assertEquals(currentElement().getAttribute('id'), 'place'); // current element is changed back to place.
         return null;
       }
 
-      assertEquals(#.#.getAttribute('id'), 'place')
+      assertEquals(#*#.getAttribute('id'), 'place')
       'Tokyo' // Select a place
       true    // click Next button
     ;
