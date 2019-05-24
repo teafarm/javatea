@@ -12,7 +12,7 @@ public class WizardTest extends tea.TeaBase {
                 'john@email'
                 'Tokyo'
                 true
-    ;
+    #
 
     assertEquals(#'NAME'@>, 'John', 'Name entered');
     assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');

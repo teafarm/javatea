@@ -23,7 +23,7 @@ public class ScreenshotTest extends tea.TeaBase {
                 'john@email'
                 'Tokyo'
                 true
-    ;
+    #
 
     assertEquals(#'NAME'@>, 'Invalid Name', 'Incorrect Name to throw an exception');
   }

@@ -9,32 +9,36 @@ public class DemoTest extends tea.TeaBase {
     createDriver('chrome');
     driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
 
-    #'Name'> = 'John';
-    #'Name'>#.balloonAndWait('Enter your name.');
+    #
+      'Name'> = 'John'
+      'Name'>.balloonAndWait('Enter your name.');
 
-    TeaElement emailInput = blurElement(#'Email'>);
-    #'Email'> = 'john@email';
-    emailInput.balloonAndWait('Blur to hide email.', 'balloon:right;');
+      {TeaElement emailInput = blurElement(#'Email'>);}
+      'Email'> = 'john@email'
+      emailInput.balloonAndWait('Blur to hide email.', 'balloon:right;');
 
-    final TeaElement placeSelect = #'Place'>#;
-    TeaElement placeBalloon = placeSelect.balloon("Select 'Tokyo'",
+      {
+        final TeaElement placeSelect = #'Place'>;
+        TeaElement placeBalloon = placeSelect.balloon("Select 'Tokyo'",
                   'left:100px; background-color:red; color:white; border:10px solid pink;');
-    waitUntil(
+      }
+      waitUntil(
         () -> placeSelect.getFirstSelectedOption().getText().equals('Tokyo'),
         -1);
-    hideElement(placeBalloon);
+      hideElement(placeBalloon);
 
-    #'Next'.balloonAndWait('Click <b>"Next"</b> to confirm values entered.',
+      'Next'.balloonAndWait('Click <b>"Next"</b> to confirm values entered.',
         'font-size:14pt;',
-        {onhide:() -> {#'Next' = true;}});
+        {onhide:() -> {#'Next' = true#}});
 
-    blurElement(#'EMAIL'@>);
-    emphasizeElement(#'NAME'@>);
-    emphasizeElement(#'PLACE'@>);
+      blurElement(#'EMAIL'@>);
+      emphasizeElement(#'NAME'@>);
+      emphasizeElement(#'PLACE'@>);
 
-    #'PLACE'@>#.balloonAndWait('Values entered on Page 1.',
+      'PLACE'@>.balloonAndWait('Values entered on Page 1.',
         'top:-200px;',
         { onload: balloonElement -> moveElement(balloonElement, 200) });
+    #
 
     driver.quit();
   }

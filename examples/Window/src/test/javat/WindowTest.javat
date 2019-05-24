@@ -15,7 +15,7 @@ public class WindowTest extends tea.TeaBase {
     assertEquals(#'id:message', 'Parent window', 'message1');
     assertEquals(driver.getWindowHandles().size(), 1, 'Number of window1');
 
-    #'linkText:Open window' = true;
+    #'linkText:Open window' = true#
     // Switch to the new windows (#2)
     for (String windowHandle  : driver.getWindowHandles()) {
       if (!windowHandle.equals(win1)) {

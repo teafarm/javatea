@@ -8,6 +8,6 @@ public class GoogleSearchTest extends tea.TeaBase {
     #
       'name:q' = 'Test Tool'
           true
-    ;
+    #
   }
 }

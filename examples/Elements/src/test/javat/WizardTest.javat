@@ -17,7 +17,7 @@ public class WizardTest extends tea.TeaBase {
           false
           true
           true
-    ;
+    #
 
     waitForText('Page 2');
     assertEquals(#'Name'@>, 'John Smith', 'Name on Page 2');
@@ -51,7 +51,7 @@ public class WizardTest extends tea.TeaBase {
           false     // Agreement
       'Color'> @= 'yellow'
       'Next' = true
-    ;
+    #
 
     waitForText('Page 2');
     assertEquals(#'Name'@>, 'John Smith', 'Name on Page 2');

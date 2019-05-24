@@ -25,7 +25,7 @@ public class LocatorsTest extends tea.TeaBase {
     assertEquals(#'xpath://input[@id="name"]', 'Enter your name', 'xpath locator');
 
     // Attributes
-    TeaElement name = #'id:name'#;
+    TeaElement name = #'id:name';
     assertEquals(name.getTagName(), 'input', 'tag name');
     assertEquals(name.getAttribute('type'), 'text', 'type attribute');
     assertEquals(name.getAttribute('id'), 'name', 'name attribute');

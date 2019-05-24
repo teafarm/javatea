@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class OrTest extends tea.TeaBase {
   private void next() {#
     'Next' = true
-  ;}
+  #}
 
   @Test
   public void test1() {
@@ -20,7 +20,7 @@ public class OrTest extends tea.TeaBase {
           'Bill To Address', // BillTo
           'Note Message' // Note
       ]
-    ;
+    #
     assertEquals(#'Type'@>, 'billto', 'Type on Page 2');
     next();
 
@@ -38,7 +38,7 @@ public class OrTest extends tea.TeaBase {
       'Type'> = 'note' true
 
       'Ship To'> | 'Bill To'> | 'Note'> = 'Default message' // to be applied on the element found
-    ;
+    #
     assertEquals(#'Type'@>, 'note', 'Type on Page 2');
     next();
 
@@ -60,15 +60,15 @@ public class OrTest extends tea.TeaBase {
         fail('This message should not be dislayed.');
       ,
         #
-          assertEquals(#'Type'@>, 'shipto', 'Type on Page 2')
-          assertEquals(#'className:title', 'Page2', 'Title on Page 2')
-        ;
+          assertEquals(#'Type'@>, 'shipto', 'Type on Page 2');
+          assertEquals(#'className:title', 'Page2', 'Title on Page 2');
+        #
         return 'Ship To Value'; // Return a value to be set in the selected element.
       ,
         fail('This message should not be dislayed.');
       ]
-      next()
-    ;
+      next();
+    #
 
     assertEquals(#'Type'@>, 'shipto', 'Type on Page 3');
     assertEquals(#'Ship To'@>, 'Ship To Value', 'Ship To on Page 3');

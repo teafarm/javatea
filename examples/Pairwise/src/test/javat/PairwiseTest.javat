@@ -12,7 +12,7 @@ public class PairwiseTest extends tea.TeaBase {
                 {* 'john@email', '' *}
                 {* 'New York', 'Tokyo' *}
                 true
-    ;
+    #
 
     assertEquals(#'NAME'@>, toActualValue({***0***}), 'Name entered');
     assertEquals(#'EMAIL'@>, toActualValue({***1***}), 'Email entered');

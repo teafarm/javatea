@@ -5,30 +5,30 @@ import org.junit.jupiter.api.Test;
 
 public class AlertTest extends tea.TeaBase {
   @Test
-  public void start() {
+  public void test() {
     createDriver('chrome');
     driver.get(new java.io.File('Page1.html').toURI().toString());
 
     // Alert dialog
-    #'id:openAlert' = true;
+    #'id:openAlert' = true#
     Alert alert = driver.switchTo().alert();
     assertEquals(alert.getText(), 'Hello from alert!', 'Alert message');
     alert.accept();
 
     // Confirmation dialog
-    #'id:openConfirm' = true;
+    #'id:openConfirm' = true#
     alert = driver.switchTo().alert();
     assertEquals(alert.getText(), 'Hello from confirm!', 'Confirmation message');
     alert.accept();
     assertEquals(#'id:message', 'true', 'Confirmation accepted');
 
-    #'id:openConfirm' = true;
+    #'id:openConfirm' = true#
     alert = driver.switchTo().alert();
     alert.dismiss();
     assertEquals(#'id:message', 'false', 'Confirmation cancelled');
 
     // Prompt dialog
-    #'id:openPrompt' = true;
+    #'id:openPrompt' = true#
     alert = driver.switchTo().alert();
     assertEquals(alert.getText(), 'Hello from prompt!', 'Prompt message');
     alert.accept();
@@ -38,11 +38,11 @@ public class AlertTest extends tea.TeaBase {
       'id:openPrompt' = true
       {alert = driver.switchTo().alert();}
       alert = 'New Message'
-      alert.accept()
-      assertEquals(#'id:message', 'New Message', 'Prompt custom message')
-    ;
+      alert.accept();
+      assertEquals(#'id:message', 'New Message', 'Prompt custom message');
+    #
 
-    #'id:openPrompt' = true;
+    #'id:openPrompt' = true#
     alert = driver.switchTo().alert();
     alert.dismiss();
     assertEquals(#'id:message', '[empty]', 'Prompt cancelled message');

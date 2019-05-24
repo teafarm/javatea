@@ -6,12 +6,12 @@ public class Page1 extends TeaBase {
   }
 
   public Page1 setUserInfo(String name, String email, String place) {
-    #'Name'> = name email place;
+    #'Name'> = name email place#
     return this;
   }
 
   public Page1 next() {
-    #'Next' = true;
+    #'Next' = true#
     return this;
   }
 }

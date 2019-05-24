@@ -22,7 +22,7 @@ public class ShiftTest extends tea.TeaBase {
       'Name'input@> = 'John Smith' // Next input box - Name input field
       'Email'input@> = 'jsmith@email'
       'Name'> = true // Click Next button (It returns a Name input field by default shift function)
-    ;
+    #
 
     assertEquals(#'Name'input@>, 'John Smith', 'Name on Page 1');
     assertEquals(#'Email'input@>, 'jsmith@email', 'Email on Page 1');

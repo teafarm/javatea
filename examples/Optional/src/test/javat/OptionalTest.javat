@@ -14,7 +14,7 @@ public class OptionalTest extends tea.TeaBase {
       optional 'Place'> = 'Tokyo'
       optional 'Zip'> = '12345-6789'
       'Next' = true
-    ;
+    #
 
     assertEquals(#'NAME'@>, 'John', 'Name entered');
     assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');

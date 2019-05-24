@@ -14,7 +14,7 @@ public class PropertiesTest extends tea.TeaBase {
                   '{entry email}'
                   'New York'
                   true
-    ;
+    #
     assertEquals(#'Name'>, 'John Smith', 'Name on Page 1');
     assertEquals(#'Email'>, 'jsmith@email', 'Email on Page 1');
     driver.quit();
@@ -31,7 +31,7 @@ public class PropertiesTest extends tea.TeaBase {
                   '{entry email}'
                   'Tokyo'
                   true
-    ;
+    #
     assertEquals(#'Name'>, 'ジョン　スミス', 'Japanese name on Page 1');
     assertEquals(#'Email'>, 'ジェイスミス＠電子手紙', 'Japanese email in Page 1');
 

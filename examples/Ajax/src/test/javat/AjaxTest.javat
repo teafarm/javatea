@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class AjaxTest extends tea.TeaBase {
   private void next() {
     print('next');
-    #'xpath://button'[0] = true;
+    #'xpath://button'[0] = true#
   }
 
   @Test
@@ -19,23 +19,23 @@ public class AjaxTest extends tea.TeaBase {
       'Existing customer?'> = true
       'User ID'> = 'jsmith'
       'Name'> = 'John Smith'
-      next()
+      next();
 
       // Page 2 (Hide)
       'Have you registered address before?'> = true
-      waitForNotText('Address')
+      waitForNotText('Address');
       'Note'> = 'Test note'
-      next()
+      next();
 
       // Page 3 (Show and hide), both
       'Are you a US citizen?'> = true
       'State'> = 'New York'
       'Occupation'> = 'Engineer'
-      next()
-    ;
+      next();
+    #
 
     // Page 4
-    assertTrue(#'Customer'@>#, 'Customer');
+    assertTrue(#'Customer'@>, 'Customer');
     assertEquals(#'User ID'@>, 'jsmith', 'User ID');
     assertEquals(#'Name'@>, 'John Smith', 'Name');
 
