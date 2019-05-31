@@ -20,7 +20,7 @@ public class LambdaTest extends tea.TeaBase {
       }
 
       // Call a lambda function with no parameters
-      () => {
+      () -> {
         assertEquals(#*#.getAttribute('id'), 'place'); // current element is place in original contenxt
         pushContext(); // save the current context and create a new one
         #'Name'> += ' Smith'# // Access Name input element and count up element index
