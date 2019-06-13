@@ -1,0 +1,71 @@
+<html>
+<head><meta charset="UTF-8">
+<title>Test Site</title>
+<script src="../commons.js"></script>
+<style>
+  span  {width:60px; display:inline-block; text-align:right;}
+  input {width: 150px; margin:5px; font-family: serif; background-color:white}
+  select {width: 150px; margin:5px;padding:2px;}
+  button {margin-left:70px; padding:5px;}
+</style>
+<script>
+function submitForm(f) {
+	var params = crerateParams(f);
+	params.name = f.name.value;
+	params.email = f.email.value;
+	params.place = f.place.options[f.place.selectedIndex].text;
+	params.color = getSelectedOptions('color');
+	params.type = f.auto.checked ? 'Auto' : (f.truck.checked ? 'Truck' : "");
+	params.agreement = f.agreement.checked;
+	request(f.action, params);
+}
+
+function getSelectedOptions(eleId) {
+	var results = [];
+	var options = document.getElementById(eleId).options;
+	for (var i=0; i<options.length; i++) {
+		if (options[i].selected) results.push(options[i].text || options[i].value);
+	}
+	return results.join(",");
+}
+</script>
+</head>
+<body>
+
+<h2 class="title">Page 1</h2>
+
+<form method="get" action="Page2.html" onsubmit="var self=this;this.nextBtn.disabled=true;setTimeout(function(){submitForm(self);},1000);return false;">
+  <span class="label">Name</span>
+  <input type="text" id="name" class="input-field" value="Enter your name">
+  <br>
+  <span class="label">Email</span>
+  <input type="text" id="email" class="input-field" value="Enter your email">
+  <br>
+  <span class="label">Place</span>
+  <select id="place">
+    <option name="option-value" value="ny">New York</option>
+    <option name="option-value" value="tokyo">Tokyo</option>
+  </select>
+  <br>
+
+  <span class="label">Color</span>
+  <select id="color" multiple size="3">
+    <option value="red">Red</option>
+    <option value="yellow">Yellow</option>
+    <option value="blue">Blue</option>
+  </select><br>
+  <br>
+
+  <span class="label">Type</span>
+  <input type="radio" id="auto" name="type" style="width:10"> Auto &nbsp;
+  <input type="radio" id="truck" name="type" style="width:10"> Truck<br>
+
+  <span id="agreemntLabel" class="label">Agreement</span>
+  <input type="checkbox" id="agreement" style="width:40"><br>
+  <br>
+
+  <button id="nextBtn" class="button">Next</button>
+</form>
+
+</body>
+<html>

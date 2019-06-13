@@ -18,6 +18,6 @@ public class ActionsTest extends tea.TeaBase {
 
     waitForText("Double Clicked!");
 
-    driver.close();
+    driver.quit();
   }
 }

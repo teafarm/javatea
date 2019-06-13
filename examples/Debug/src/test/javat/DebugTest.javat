@@ -1,0 +1,54 @@
+import static tea.TeaAssert.*;
+import static tea.Assert.*;
+import tea.*;
+import org.openqa.selenium.WebElement;
+import org.junit.jupiter.api.Test;
+
+public class DebugTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    // Register custom classes
+    registerSubclass(TeaElement.class, CustomTeaElement.class);
+    registerSubclass(TeaElementBuilder.class, CustomTeaElementBuilder.class);
+
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+                'john@email'
+                'Tokyo'
+    #
+
+    //driver.quit();
+  }
+
+  // Custom class to replace TeaElement
+  public static class CustomTeaElement extends TeaElement {
+    public CustomTeaElement(WebElement element, TeaElementBuilder options) {
+      super(element, options);
+    }
+
+    @Override
+    public TeaElement setValue(Object value) {
+      TeaElement teaElement = super.setValue(value);
+      teaElement.setAttribute('style', 'border', '3px solid blue'); // Enclose the value element with a blue box.
+      return teaElement;
+    }
+  }
+
+  // Custom class to replace TeaElementBuilder
+  public static class CustomTeaElementBuilder extends TeaElementBuilder {
+    public CustomTeaElementBuilder(tea.TeaBase base, String text) {
+      super(base, text);
+    }
+
+    @Override
+    public TeaElement build() {
+      TeaElement teaElement = super.build();
+      teaElement.setAttribute('style', 'color', 'red'); // Change color of the element found by locator.
+      return teaElement;
+    }
+  }
+
+}

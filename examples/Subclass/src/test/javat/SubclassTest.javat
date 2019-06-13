@@ -1,0 +1,70 @@
+import static tea.TeaAssert.*;
+import static tea.Assert.*;
+import tea.TeaElement;
+import tea.TeaElementBuilder;
+import tea.util.SeleniumUtil;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.junit.jupiter.api.Test;
+
+public class SubclassTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    // Register a custom TeaElement class to this instance.
+    // CustomTeaElement is instantiated instead of tea.TeaElement class.
+    // If you want to apply all tests, use registerGlobalSubclass()
+    registerSubclass(TeaElement.class, CustomTeaElement.class);
+
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+                'john@email'
+                'Tokyo'
+                true
+    #
+
+    assertEquals(#'NAME'@>, 'John', 'Name entered');
+    assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
+
+    driver.quit();
+  }
+
+  // Wait until the given TeaElement becomes enabled or deleted from the page.
+  public void waitUntilEnabled(TeaElement teaElement) {
+    waitUntil(() -> {
+      try {
+        return teaElement.isEnabled();
+      } catch (StaleElementReferenceException ex) {
+        return true; // jumped to the next page
+      }
+    });
+  }
+
+  // Define a custom TeaElement class
+  public static class CustomTeaElement extends TeaElement {
+    public CustomTeaElement(WebElement element, TeaElementBuilder options) {
+      super(element, options);
+    }
+
+    // Override setValue method to insert custom code
+    // before and after an equal assignment statement is executed.
+    @Override
+    public TeaElement setValue(Object value) {
+      System.out.println("Before setting a value: "+value);
+
+      boolean isClick = value != null && value instanceof Boolean && Boolean.parseBoolean(value.toString());
+      if (isClick) SeleniumUtil.takeScreenshot(base.driver, "screenshot_beforeClick.png");
+
+      TeaElement teaElement = super.setValue(value);
+
+      if (isClick) {
+        ((SubclassTest) base).waitUntilEnabled(this);
+        SeleniumUtil.takeScreenshot(base.driver, "screenshot_afterClick.png");
+      }
+      return teaElement;
+    }
+  }
+}

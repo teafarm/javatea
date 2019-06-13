@@ -1,6 +1,6 @@
 # JavaTea
 
-End-to-end functional automation testing framework for Java
+An end-to-end functional automation testing framework for Java
 
 
 ## Getting Started
@@ -9,10 +9,10 @@ End-to-end functional automation testing framework for Java
 
 You'll need:
 
-* [Java 1.8 or later](https://www.oracle.com/technetwork/java/javase/)
-* [Maven 3.1.6 or later](https://maven.apache.org/)
-* [Chrome browser](https://www.google.com/chrome/) 
-* [ChromeDriver](http://chromedriver.chromium.org/) - WebDriver for Chrome
+* [Java 1.8 or later] (https://www.oracle.com/technetwork/java/javase/)
+* [Maven 3.1.6 or later] (https://maven.apache.org/)
+* [Chrome browser] (https://www.google.com/chrome/) 
+* [ChromeDriver] (http://chromedriver.chromium.org/) - WebDriver for Chrome
 
 We assumed that Maven and ChromeDriver are installed in the folders below:
 
@@ -29,8 +29,8 @@ We assumed that Maven and ChromeDriver are installed in the folders below:
 
 Download the following files:
 
-* pom.xml(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/pom.xml)
-* GoogleSearchTest.javat(https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/src/test/javat/GoogleSearchTest.javat)
+* pom.xml (https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/pom.xml)
+* GoogleSearchTest.javat (https://github.com/teafarm/javatea/tree/master/examples/GoogleSearch/src/test/javat/GoogleSearchTest.javat)
 
 Store the files in the following folder structure:
 
@@ -55,8 +55,8 @@ A chrome browser will be opened and show a Google site. And a keyword search wil
 
 ## Documentation
 
-* [User Guide](https://github.com/teafarm/javatea/tree/master/doc/JavaTeaUserGuide.pdf)
-* [Javadoc](https://htmlpreview.github.io/?https://github.com/teafarm/javatea/blob/master/doc/api/tea/TeaBase.html)
+* [User Guide] (https://github.com/teafarm/javatea/tree/master/doc/JavaTeaUserGuide.pdf)
+* [Javadoc] (https://htmlpreview.github.io/?https://github.com/teafarm/javatea/blob/master/doc/api/tea/TeaBase.html)
 
 ## History
  

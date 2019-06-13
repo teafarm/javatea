@@ -1,0 +1,28 @@
+import static tea.TeaAssert.*;
+import static tea.Assert.*;
+import org.junit.jupiter.api.Test;
+
+public class ElementIndexTest extends tea.TeaBase {
+  @Test
+  public void test() {
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John Smith'
+      elementByIndex(0).setAttribute('style', 'color', 'red');
+      currentElement().shift(1);
+          'Tokyo'
+      @?<<; // currentElement().shift(-2);
+          'jsmith@email'
+          false
+          true
+    #
+
+    assertEquals(#'NAME'@>, 'John Smith', 'Name on Page 2');
+    assertEquals(#'EMAIL'@>, 'jsmith@email', 'Email on Page 2');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place on Page 2');
+
+    driver.quit();
+  }
+}

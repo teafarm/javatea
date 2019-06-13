@@ -48,6 +48,6 @@ public class AjaxTest extends tea.TeaBase {
     assertEquals(#'State'@>, 'New York', 'State');
     assertEquals(#'Occupation'@>, 'Engineer', 'Occupation');
 
-    driver.close();
+    driver.quit();
   }
 }

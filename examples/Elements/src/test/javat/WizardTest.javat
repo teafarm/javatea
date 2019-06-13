@@ -27,7 +27,7 @@ public class WizardTest extends tea.TeaBase {
     assertEquals(#'Type'@>, 'Auto', 'Type on Page 2');
     assertTrue(#'Agreement'@>, 'Agreement on Page 2');
 
-    driver.close();
+    driver.quit();
   }
 
   @Test
@@ -61,6 +61,6 @@ public class WizardTest extends tea.TeaBase {
     assertEquals(#'Type'@>, 'Truck', 'Type on Page 2');
     assertFalse(#'Agreement'@>, 'Agreement on Page 2');
 
-    driver.close();
+    driver.quit();
   }
 }
