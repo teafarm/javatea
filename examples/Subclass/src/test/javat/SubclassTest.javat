@@ -1,8 +1,8 @@
 import static tea.TeaAssert.*;
 import static tea.Assert.*;
-import tea.TeaElement;
-import tea.TeaElementBuilder;
+import tea.*;
 import tea.util.SeleniumUtil;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.junit.jupiter.api.Test;
@@ -65,6 +65,118 @@ public class SubclassTest extends tea.TeaBase {
         SeleniumUtil.takeScreenshot(base.driver, "screenshot_afterClick.png");
       }
       return teaElement;
+    }
+  }
+
+  @Test
+  public void test2() {
+    // Register a custom TeaElementUtil class.
+    registerSubclass(TeaElementUtil.class, CustomTeaElementUtil.class);
+
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+                'john@email'
+                'Tokyo'
+                true
+    #
+
+    assertEquals(#'NAME'@>, 'John', 'Name entered');
+    assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
+
+    sleep(2000);
+    driver.quit();
+  }
+
+  // Define a custom TeaElementUtil class
+  public static class CustomTeaElementUtil extends TeaElementUtil {
+    public CustomTeaElementUtil(TeaElementBuilder options) {
+      super(options);
+    }
+
+    // Override find method to add a red box on the element found.
+    @Override
+    public TeaElement find() {
+      TeaElement teaElement = super.find();
+      teaElement.setAttribute('style', 'border', '3px solid red');
+      System.out.println("Added a blue box on the found element: "+options.toString());
+      return teaElement;
+    }
+  }
+
+  @Test
+  public void test3() {
+    // Register a custom TeaElementUtil class.
+    registerSubclass(TeaElementBuilder.class, CustomTeaElementBuilder.class);
+
+    createDriver('chrome');
+    driver.get(new java.io.File('../Wizard/Page1.html').toURI().toString());
+
+    #
+      'Name'> = 'John'
+      optional 'Email'> = 'john@email'
+      optional 'City'> = 'Test City'
+      optional 'Place'> = 'Tokyo'
+      optional 'Zip'> = '12345-6789'
+      'Next' = true
+    #
+
+    assertEquals(#'NAME'@>, 'John', 'Name entered');
+    assertEquals(#'EMAIL'@>, 'john@email', 'Email entered');
+    assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
+
+    driver.quit();
+  }
+
+  // Define a custom TeaElementBuilder class
+  public static class CustomTeaElementBuilder extends TeaElementBuilder {
+    public CustomTeaElementBuilder(TeaBase base, String text) {
+      super(base, text);
+    }
+
+    // Override optional method to see which elements are optional.
+    @Override
+    public TeaElementBuilder optional(boolean value) {
+      TeaElementBuilder builder = super.optional(value);
+      if (isOptional) System.out.println("Optional element: "+this.toString());
+      return builder;
+    }
+  }
+
+  @Test
+  public void test4() {
+    // Register a custom AlertElement class.
+    registerSubclass(AlertElement.class, CustomAlertElement.class);
+
+    createDriver('chrome');
+    driver.get(new java.io.File('../Alert/Page1.html').toURI().toString());
+
+    #
+      'id:openPrompt' = true
+      {Alert alert = driver.switchTo().alert();}
+      alert = 'New Message'
+      alert.accept();
+      assertEquals(#'id:message', 'New Message', 'Prompt custom message');
+    #
+
+    driver.quit();
+  }
+
+  // Define a custom AlertElement class
+  public static class CustomAlertElement extends AlertElement {
+    public CustomAlertElement(Alert alert) {
+      super(alert);
+      System.out.println("Found alert dialog. Text="+alert.getText());
+    }
+
+    // Override sendKeys method to see the value.
+    @Override
+    public void sendKeys(String value) {
+      super.sendKeys(value);
+      System.out.println("Sent a value to dialog. Value="+value);
     }
   }
 }

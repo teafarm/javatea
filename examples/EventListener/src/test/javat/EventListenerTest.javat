@@ -1,6 +1,10 @@
 import static tea.TeaAssert.*;
 import static tea.Assert.*;
+import tea.util.SeleniumUtil;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +33,19 @@ public class EventListenerTest extends tea.TeaBase {
     assertEquals(#'PLACE'@>, 'Tokyo', 'Place selected');
 
     driver.quit();
+  }
+
+  public class CustomEventListener extends AbstractWebDriverEventListener {
+    private int index = 0;
+
+    @Override
+    public void beforeClickOn(WebElement element, WebDriver driver) {
+      SeleniumUtil.takeScreenshot(driver, "screenshot"+(++index)+".png");
+    }
+
+    @Override
+    public void afterClickOn(WebElement element, WebDriver driver) {
+      SeleniumUtil.takeScreenshot(driver, "screenshot"+(++index)+".png");
+    }
   }
 }

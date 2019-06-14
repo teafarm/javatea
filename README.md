@@ -56,7 +56,11 @@ A chrome browser will be opened and show a Google site. And a keyword search wil
 ## Documentation
 
 * [User Guide] (https://github.com/teafarm/javatea/tree/master/doc/JavaTeaUserGuide.pdf)
-* [Javadoc] (https://htmlpreview.github.io/?https://github.com/teafarm/javatea/blob/master/doc/api/tea/TeaBase.html)
+* [Javadoc] (https://htmlpreview.github.io/?https://github.com/teafarm/javatea/blob/master/doc/api/tea/package-summary.html)
+
+## Articles
+
+* [JavaTea Tutorial: Using a Test Tool as a Demonstration Tool - DZone] (https://dzone.com/articles/use-test-tool-as-a-demonstration-tool-execute-demo)
 
 ## History
  
