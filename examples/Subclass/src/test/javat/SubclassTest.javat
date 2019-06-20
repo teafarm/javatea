@@ -66,6 +66,14 @@ public class SubclassTest extends tea.TeaBase {
       }
       return teaElement;
     }
+
+    // Override click method to insert custom code to be invoked when clicked.
+    @Override
+    public void click() {
+      System.out.println("Before click()");
+      super.click();
+      System.out.println("After click()");
+    }
   }
 
   @Test
