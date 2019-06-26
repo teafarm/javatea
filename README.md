@@ -60,7 +60,7 @@ A chrome browser will be opened and show a Google site. And a keyword search wil
 
 ## Articles
 
-* [How to Make A Simple End-To-End Testing Framework With JavaTea - DZone] (https://dzone.com/articles/how-to-make-java-tea-simple-end-to-end-testing-fra)
+* [How to Make Simple End-To-End Tests With JavaTea - DZone] (https://dzone.com/articles/how-to-make-simple-end-to-end-tests-with-javatea)
 * [JavaTea Tutorial: Using a Test Tool as a Demonstration Tool - DZone] (https://dzone.com/articles/use-test-tool-as-a-demonstration-tool-execute-demo)
 
 ## History
