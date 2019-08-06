@@ -65,7 +65,7 @@ A chrome browser will be opened and show a Google site. And a keyword search wil
 
 ## History
  
-Version 0.0.1 (2019-05-01)
+Version 1.0.0 (2019-08-06)
  
 ## Credits
  
